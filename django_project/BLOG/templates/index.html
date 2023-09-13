@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: black;
+  transition: background-color 0.3s; /* Add background color transition for the whole body */
+}
+
+.header {
+  padding: 2px;
+  font-size: 40px;
+  text-align: center;
+  background: red;
+  transition: background-color 0.3s, color 0.3s; /* Add transition for header background and color */
+}
+
+.header:hover {
+  background: #ff6600; /* Change header background color on hover */
+  color: white; /* Change header text color on hover */
+}
+
+.leftcolumn {   
+  float: left;
+  width: 100%;
+}
+
+.card {
+  background-color: grey;
+  padding: 20px;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.3s; /* Add transition for card background and transform (scale) */
+}
+
+.card:hover {
+  background-color: #333; /* Change card background color on hover */
+  transform: scale(1.05); /* Scale card slightly on hover for a subtle effect */
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2> MY NAME IS JEFFRIN JOJO</h2>
+  <p> This is my first django project</p>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    {% for post in posts reversed %}
+    <div class="card">
+      <a style="text-decoration: none; color: black;" href="/post/{{post.id}}">
+        <h2>{{post.title}}</h2>
+        <h5>{{post.created_at}}</h5>
+        <p>{{post.body|truncatewords:20}}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
